@@ -74,8 +74,9 @@ TBD
 - **Quran:**
   - Mushafs
   - Mushafs/id/transmissions
+  - Mushafs/import
   - Surahs
-  - Surahs/{id}/names/
+  - Surahs/{id}/names
   - Ayahs
   - Ayahs/random
   - Words
