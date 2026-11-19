@@ -66,28 +66,30 @@ TBD
   - Auth/LogOut
   - Auth/LogOutAll
   - Auth/Register
-  - Profile/{uuid}
+  - Profile/{id}
   - Profile/me
-  - Users/Users
+  - Users
+  - Users/{id}/names
   - Groups
 - **Quran:**
   - Mushafs
-  - Mushafs/import
+  - Mushafs/id/transmissions
   - Surahs
+  - Surahs/{id}/names/
   - Ayahs
+  - Ayahs/random
   - Words
   - Translations
-  - Translations/{uuid}/ayahs
+  - Translations/{id}/ayahs
   - Translations/import
   - Recitations
-  - Recitations/{uuid}/upload/{surah_uuid}
+  - Recitations/{id}/track
   - Takhtits
-  - Takhtits/{uuid}/ayahs_breakers
-  - Takhtits/{uuid}/word_brakers
-  - Takhtits/{uuid}/import
+  - Takhtits/{id}/ayahs_breakers
+  - Takhtits/{id}/word_brakers
+  - Takhtits/{id}/import
 - **Other:**
-  - Phrases
-  - Phrases/modify
+  - Provenances
   - Notifications
   - Notifications/me
   - Notifications/opened
