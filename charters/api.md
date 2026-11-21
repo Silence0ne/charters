@@ -101,114 +101,73 @@ TBD
 
 - **Account:**
   - **account_customuser** (Stores user accounts and profile information)
-    - Related to `auth_group` (Many-to-Many via field `groups`)
-    - Related to `auth_permission` (Many-to-Many via field `user_permissions`, intermediary table `account_customuser_user_permissions`)
 
   - **account_customuser_groups** (Intermediate table for user-group relationships)  
-      - Related to `account_customuser`
-      - Related to `auth_group`
 
-  - **account_customuser_user_permissions** (Intermediate table for user-permission relationships)  
-    - Related to `account_customuser`
-    - Related to `auth_permission`
+  - **account_customuser_user_permissions** (Intermediate table for user-permission relationships)
 
-  - **account_username** (Stores different names associated with users)  
-      - Related to `account_customuser` (Many-to-One via `user`)
+  - **account_username** (Stores different names associated with users)
+
+  - **auth_permission** (Stores user and group permissions)
+
+  - **auth_group** (Stores user groups)
+
+  - **auth_group_permissions** (Intermediate table for group-permission relationships)
+
+- **Django system tables**
+  - **django_admin_log** (Stores actions performed through Django Admin)
+  
+  - **django_content_type** (Stores metadata about installed Django models)
+  
+  - **django_migrations** (Tracks applied database migrations)
+  
+  - **django_sessions** (Stores user session data and expiration information)
+  
+  - **knox_authtoken**  (Pending model and relationship inspection)
 
 - **Core:**
   - **core_request** (Stores information about requests and responses)
-    - No direct relationship to other tables
 
   - **core_publicdocument** (Stores publicly accessible documents)
-    - No direct relationship to other tables
 
-  - **core_file** (Stores uploaded file metadata and storage information)
-    - Related to `account_customuser` (Many-to-One via `deleted_by`)
-    - Related to `account_customuser` (Many-to-One via `uploader`)
+  - **core_file** (Stores uploaded file metadata and storage information. Related to account_customuser)
 
-  - **core_notification**
-    - Related to `account_customuser` (Many-To-One via `user`)
+  - **core_notification** (Stores notifications and their status for users)
 
 - **Quran:**
   - **quran_rasmolmushaf** (Stores Rasm al-Mushaf information)
-    - Related to `account_customuser` (Many-To-One via creator)
-    - Related to `account_customuser` (Many-To-One via compiler)
 
   - **quran_romsurahayahs** (Associates a Rasm al-Mushaf with a Surah and Ayah)
-    - Related to `account_customuser` (Many-To-One via creator)
-    - Related to `account_customuser` (Many-To-One via rasm_ol_mushaf)
-    - Related to `account_customuser` (Many-To-One via surah)
-    - Related to `account_customuser` (Many-To-One via ayah)
 
-  - **quran_provenance** (Stores provenance information)
-    - Related to `account_customuser` (Many-To-One via creator)
-    - Related to `account_customuser` (Many-To-One via account)
-    - Related to `self` (One-To-One via child_provenance)
+  - **quran_provenance** (Stores provenance records with optional one-to-one parent-child relationships)
 
-  - **quran_transmission** (Stores Quran transmission information)
-    - Related to `account_customuser` (Many-To-One via creator)
-    - Related to `quran_RasmOlMushaf` (Many-To-One via rasm_ol_mushaf)
-    - Related to `quran_provenance` (Many-To-One via provenances)
+  - **quran_transmission** (Stores Quran transmission information, Related to quran_provenance)
 
-  - **quran_surah** (Stores Quran surah information)
-    - Related to `account_customuser` (Many-To-One via creator)
+  - **quran_surah** (Stores Quran surah information, Related to account_customuser)
 
   - **quran_ayah** (Stores Quran ayah information)
-    - Related to `account_customuser` (Many-To-One via creator)
-    - Related to `quran_surah` (Many-To-One via surah)
 
   - **quran_word** (Stores Quran word information)
-    - Related to `account_customuser` (Many-To-One via creator)
-    - Related to `quran_ayah` (Many-To-One via ayah)
 
-  - **quran_wordtext** (Stores text associated with Quran words)
-    - Related to `account_customuser` (Many-To-One via creator)
-    - Related to `quran_customuser` (Many-To-One via word)
-    - Related to `quran_transmission` (Many-To-One via transmission)
+  - **quran_wordtext** (Stores text associated with Quran words, Related to quran_transmission)
 
-  - **quran_translation** (Stores Quran translation information)
-    - Related to `account_customuser` (Many-To-One via creator)
-    - Related to `quran_transmission` (Many-To-One via transmission)
-    - Related to `account_customuser` (Many-To-One via translator)
+  - **quran_translation** (Stores Quran translation information, Related to quran_transmission)
 
-  - **quran_ayahtranslation** (Stores translation text for individual ayahs)
-    - Related to `account_customuser` (Many-To-One via creator)
-    - Related to `quran_translation` (Many-To-One via translation)
-    - Related to `quran_ayah` (Many-To-One via ayah)
+  - **quran_ayahtranslation** (Stores translation text for individual ayahs, Related to account_customuser)
 
-  - **quran_takhtit** (Stores Takhtit information)
-    - Related to `account_customuser` (Many-To-One via creator)
-    - Related to `quran_rasmolmushaf` (Many-To-One via rasm_ol_mushaf)
-    - Related to `account_customuser` (Many-To-One via account)
+  - **quran_takhtit** (Stores Takhtit information, Related to quran_rasmolmushaf)
 
-  - **quran_ayahbreaker** (Stores ayah boundary/breaking information)
-    - Related to `account_customuser` (Many-To-One via creator)
-    - Related to `quran_ayah` (Many-To-One via ayah)
-    - Related to `account_customuser` (Many-To-One via owner)
-    - Related to `quran_takhtit` (Many-To-One via takhtit)
+  - **quran_ayahbreaker** (Stores ayah boundary/breaking information, Related to account_customuser, quran_ayah,account_customuser, quran_takhtit)
 
-  - **quran_wordbreaker** (Stores word boundary/breaking information)
-    - Related to `account_customuser` (Many-To-One via creator)
-    - Related to `quran_word` (Many-To-One via word)
-    - Related to `account_customuser` (Many-To-One via owner)
-    - Related to `quran_takhtit` (Many-To-One via takhtit)
+  - **quran_wordbreaker** (Stores word boundary/breaking information, Related to account_customuser, quran_word, account_customuser, quran_takhtit)
 
-  - **quran_recitation** (Stores Quran recitation information)
-    - Related to `account_customuser` (Many-To-One via creator)
-    - Related to `quran_transmission` (Many-To-One via transmission)
-    - Related to `account_customuser` (Many-To-One via reciter_account)
+  - **quran_recitation** (Stores Quran recitation information, Related to account_customuser, quran_transmission, account_customuser)
 
-  - **quran_recitationsurah** (Associates a recitation with a surah and its audio file)
-    - Related to `quran_recitation` (many-To-One via recitation)
-    - Related to `quran_surah` (Many-To-One via surah)
-    - Related to `core_file` (Many-To-One via file)
+  - **quran_recitationsurah** (Associates a recitation with a surah and its audio file, Related to quran_recitation, quran_surah, core_file)
 
-  - **quran_recitationsurahtimestamp** (Stores timestamps for recited surahs)
-    - Related to `quran_recitationsurah` (Many-To-One via recitation_surah)
-    - Related to `quran_word` (Many-To-One via word)
+  - **quran_recitationsurahtimestamp** (Stores timestamps for recited surahs, Related to quran_recitationsurah, quran_word)
 
-  - **quran_surahname** (Stores different names of a surah)
-    - Related to `quran_surah` (Many-To-One via surah)
+  - **quran_surahname** (Stores different names of a surah, Related to quran_surah)
 
 ### Infrastructure
 
