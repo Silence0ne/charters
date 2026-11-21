@@ -101,72 +101,43 @@ TBD
 
 - **Account:**
   - **account_customuser** (Stores user accounts and profile information)
-
-  - **account_customuser_groups** (Intermediate table for user-group relationships)  
-
+  - **account_customuser_groups** (Intermediate table for user-group relationships)
   - **account_customuser_user_permissions** (Intermediate table for user-permission relationships)
-
   - **account_username** (Stores different names associated with users)
-
   - **auth_permission** (Stores user and group permissions)
-
   - **auth_group** (Stores user groups)
-
   - **auth_group_permissions** (Intermediate table for group-permission relationships)
 
 - **Django system tables**
   - **django_admin_log** (Stores actions performed through Django Admin)
-  
   - **django_content_type** (Stores metadata about installed Django models)
-  
   - **django_migrations** (Tracks applied database migrations)
-  
   - **django_sessions** (Stores user session data and expiration information)
-  
-  - **knox_authtoken**  (Pending model and relationship inspection)
+  - **knox_authtoken** (Pending model and relationship inspection)
 
 - **Core:**
   - **core_request** (Stores information about requests and responses)
-
   - **core_publicdocument** (Stores publicly accessible documents)
-
   - **core_file** (Stores uploaded file metadata and storage information. Related to account_customuser)
-
   - **core_notification** (Stores notifications and their status for users)
 
 - **Quran:**
   - **quran_rasmolmushaf** (Stores Rasm al-Mushaf information)
-
   - **quran_romsurahayahs** (Associates a Rasm al-Mushaf with a Surah and Ayah)
-
   - **quran_provenance** (Stores provenance records with optional one-to-one parent-child relationships)
-
   - **quran_transmission** (Stores Quran transmission information, Related to quran_provenance)
-
   - **quran_surah** (Stores Quran surah information, Related to account_customuser)
-
   - **quran_ayah** (Stores Quran ayah information)
-
   - **quran_word** (Stores Quran word information)
-
   - **quran_wordtext** (Stores text associated with Quran words, Related to quran_transmission)
-
   - **quran_translation** (Stores Quran translation information, Related to quran_transmission)
-
   - **quran_ayahtranslation** (Stores translation text for individual ayahs, Related to account_customuser)
-
   - **quran_takhtit** (Stores Takhtit information, Related to quran_rasmolmushaf)
-
   - **quran_ayahbreaker** (Stores ayah boundary/breaking information, Related to account_customuser, quran_ayah,account_customuser, quran_takhtit)
-
   - **quran_wordbreaker** (Stores word boundary/breaking information, Related to account_customuser, quran_word, account_customuser, quran_takhtit)
-
   - **quran_recitation** (Stores Quran recitation information, Related to account_customuser, quran_transmission, account_customuser)
-
   - **quran_recitationsurah** (Associates a recitation with a surah and its audio file, Related to quran_recitation, quran_surah, core_file)
-
   - **quran_recitationsurahtimestamp** (Stores timestamps for recited surahs, Related to quran_recitationsurah, quran_word)
-
   - **quran_surahname** (Stores different names of a surah, Related to quran_surah)
 
 ### Infrastructure
